@@ -1,5 +1,3 @@
-
-
 #include "TAD_Matriz_Esparsa.h"
 
 void InicializaMatriz(TMatriz *pMatriz, int QuantidadeLinhas, int QuantidadeColunas){
@@ -107,6 +105,3 @@ void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor){
     inserirListaLinha(pMatriz->linha, CeCabecaL);
 
 }
-
-
-
