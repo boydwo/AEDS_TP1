@@ -1,35 +1,55 @@
 #include "TAD_Matriz_Esparsa.h"
 
 void InicializaMatriz(TMatriz *pMatriz, int QuantidadeLinhas, int QuantidadeColunas){
-    int i, j;
-    pMatriz->coluna->pPrimeiro = pMatriz->linha->pPrimeiro = (TCelula*)malloc(sizeof(TCelula));
-    pMatriz->coluna->pPrimeiro->linha = pMatriz->linha->pPrimeiro->coluna = -1;     //Inicializando celulas cabeça
-    for(i=0,i<QuantideLinhas;i++){
-        
-    }
+    pMatriz->coluna->pPrimeiro = pMatriz->linha->pPrimeiro = (TCelula*)malloc(sizeof(TCelula));     //malloc para primeira celula das duas listas
+    pMatriz->coluna->pPrimeiro->coluna = pMatriz->linha->pPrimeiro->linha = -1;     //Inicializando celulas cabeça
     pMatriz->coluna->pPrimeiro->direita = pMatriz->linha->pPrimeiro->abaixo = pMatriz->coluna->pPrimeiro;   //Tratanto a Lista Circular
-    pMatriz->i = i;
-    pMatriz->j = j;
-    InicializaLinha(pMatriz->linha->pPrimeiro, i);
-    InicializaColuna(pMatriz->coluna->pPrimeiro, j);
-}
-void InicializaLinha(TMatriz *pMatriz, int i){
-    TCelula *pAUX;
-    pAUX = (TCelula*)malloc(sizeof(TCelula));                       // aloca um espaco para nova celula
-    pMatriz->linha->pPrimeiro->direita = pMatriz->linha->pPrimeiro;
-    pMatriz->linha->pPrimeiro->direita = pAUX;
-    pAUX->direita                      = pMatriz->linha->pPrimeiro; //aponta pra primeira celula fazendo o a ciclica
-    pAUX->abaixo                       = pAUX;
+    pMatriz->i = QuantidadeLinhas;
+    pMatriz->j = QuantidadeColunas;
+    InicializaLinha(pMatriz->linha, QuantidadeLinhas);
+    InicializaColuna(pMatriz->coluna, QuantidadeColunas);
 }
 
-void InicializaColuna(TMatriz *pMatriz, int j){
-    TCelula *pAUX;
-    pAUX = (TCelula*)malloc(sizeof(TCelula));                        // aloca um espaco para nova celula
-    pMatriz->coluna->pPrimeiro->abaixo = pMatriz->coluna->pPrimeiro;
-    pMatriz->coluna->pPrimeiro->abaixo = pAUX;
-    pAUX->abaixo                       = pMatriz->coluna->pPrimeiro;  //aponta pra primeira celula fazendo-a ciclica
-    pAUX->direita                      = pAUX;
+void InicializaLinha(TLista *pLista, int QuantidadeLinhas){     //Cria células cabeça para lista Linha
+    TCelula *pAUX, *pAUX2;      //pAUX percorre e pAUX2 será a nova célula 
+    int i;
+    pAUX = pLista->pPrimeiro;   //pAUX receberá a primeira célula para criar pAUX2 a partir dele
+
+    for(i=0;i<QuantidadeLinhas;i++){
+        pAUX2 = (TCelula*)malloc(sizeof(TCelula));
+        pAUX2->linha = i;
+        pAUX2->coluna = -1;
+        pAUX2->abaixo = pLista->pPrimeiro;
+        pAUX2->direita = pAUX2;
+        pAUX->abaixo = pAUX2;
+        pAUX = pAUX->abaixo;
+
+    }       
 }
 
-void InsereMatriz(TMatriz *pMatriz, int i, int j, double valor){
+void InicializaColuna(TLista *pLista, int QuantidadeColunas){       //Cria células cabeça para lista Coluna
+    TCelula *pAUX, *pAUX2;
+    int j;
+    pAUX = pLista->pPrimeiro;
+
+    for(j=0;j<QuantidadeColunas;j++){
+        pAUX2 = (TCelula*)malloc(sizeof(TCelula));
+        pAUX2->coluna = j;
+        pAUX2->linha = -1;
+        pAUX2->direita = pAUX;
+        pAUX2->abaixo = pAUX2;
+        pAUX->direita = pAUX2;
+        pAUX = pAUX->direita;
+
+    }       
+}
+
+int PercorreLinha(TLista* pLista, int PosLinha){
+    TCelula *pAUX;
+    pAUX->
+}
+
+
+void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor){
+    TCelula *pAUX, *pAUX;
 }

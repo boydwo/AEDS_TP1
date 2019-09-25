@@ -23,8 +23,8 @@ typedef struct{
 }TMatriz;
 
 //funcoes da matriz
-void InicializaMatriz(TMatriz *pMatriz, int i, int j);
-void InicializaLinha(TMatriz *pMatriz, int i);
-void InicializaColuna(TMatriz *pMatriz, int j);
+void InicializaMatriz(TMatriz *pMatriz, int QuantidadeLinhas, int QuantidadeColunas);
+void InicializaLinha(TLista *pLista, int QuantidadeLinhas);
+void InicializaColuna(TLista *pLista, int QuantidadeColunas);
 
-void InsereMatriz(TMatriz *pMatriz, int i, int j, double valor);
+void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor);
