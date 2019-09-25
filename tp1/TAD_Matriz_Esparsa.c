@@ -44,12 +44,38 @@ void InicializaColuna(TLista *pLista, int QuantidadeColunas){       //Cria célu
     }       
 }
 
-int PercorreLinha(TLista* pLista, int PosLinha){
+TCelula* PercorreLinha(TLista* pLista, int PosLinha){        //Função que percorre a lista linha para retornar o endereço da célula cabeça referente àquela posição
     TCelula *pAUX;
-    pAUX->
+    int i;
+    pAUX = pLista->pPrimeiro;
+
+    for(i=-1;i<PosLinha+1;i++){
+        if(pAUX->linha+1 == PosLinha){
+            return pAUX;
+        }
+        pAUX = pAUX->abaixo;
+    }
+
+    return NULL;
 }
 
+TCelula* PercorreColuna(TLista* pLista, int PosColuna){
+    TCelula *pAUX;
+    int i;
+    pAUX = pLista->pPrimeiro;   
+
+    for(i=-1;i<PosColuna+1;i++){
+        if  (pAUX->coluna+1 == PosColuna){
+            return pAUX;
+
+        }
+        pAUX = pAUX->direita;
+    }
+
+    return NULL;
+}
 
 void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor){
     TCelula *pAUX, *pAUX;
+    
 }

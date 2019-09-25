@@ -27,4 +27,7 @@ void InicializaMatriz(TMatriz *pMatriz, int QuantidadeLinhas, int QuantidadeColu
 void InicializaLinha(TLista *pLista, int QuantidadeLinhas);
 void InicializaColuna(TLista *pLista, int QuantidadeColunas);
 
+TCelula* PercorreLinha(TLista* pLista, int PosLinha);
+TCelula* PercorreColuna(TLista* pLista, int PosColuna);
+
 void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor);
