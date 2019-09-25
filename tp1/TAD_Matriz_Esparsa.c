@@ -77,7 +77,36 @@ TCelula* PercorreColuna(TLista* pLista, int PosColuna){
     return NULL;
 }
 
+void inserirListaLinha(TCelula *pCelula, TCelula *pCelulaAinserir){
+    TCelula *pAux;
+    pAux= pCelula;
+    while(pAux->direita != pCelula){
+        pAux= pAux->direita;
+    }
+
+    pCelulaAinserir->direita = pCelula;
+    pAux->direita = pCelulaAinserir;
+}
+
+void inserirListaColuna(TCelula *pCelula, TCelula *pCelulaAinserir){
+    TCelula *pAux;
+    pAux= pCelula;
+    while(pAux->abaixo != pCelula){
+        pAux= pAux->abaixo;
+    }
+    pCelulaAinserir->abaixo = pCelula;
+    pAux->abaixo = pCelulaAinserir;
+}
+
 void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor){
-    TCelula *pAUX, *pAUX;
+    TCelula *CeCabecaL, *CeCabecaC, *pAUX;
+    CeCabecaC = PercorreColuna(pMatriz->coluna, j);
+    CeCabecaL = PercorreLinha(pMatriz->linha, i);
+    pAUX = (TCelula*)malloc(sizeof(TCelula));
+    inserirListaColuna(pMatriz->coluna, CeCabecaC);
+    inserirListaLinha(pMatriz->linha, CeCabecaL);
 
 }
+
+
+

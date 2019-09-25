@@ -30,4 +30,6 @@ void InicializaColuna(TLista *pLista, int QuantidadeColunas);
 TCelula* PercorreLinha(TLista* pLista, int PosLinha);
 TCelula* PercorreColuna(TLista* pLista, int PosColuna);
 
+void inserirListaLinha(TCelula *pCelula, TCelula *pCelulaAinserir);
+void inserirListaColuna(TCelula *pCelula, TCelula *pCelulaAinserir);
 void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor);
