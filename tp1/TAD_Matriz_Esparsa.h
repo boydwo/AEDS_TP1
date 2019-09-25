@@ -25,7 +25,6 @@ typedef struct{
 //funcoes da matriz
 void InicializaMatriz(TMatriz *pMatriz, int i, int j);
 void InicializaLinha(TMatriz *pMatriz, int i);
-int VerListaVazia();
 void InicializaColuna(TMatriz *pMatriz, int j);
 
 void InsereMatriz(TMatriz *pMatriz, int i, int j, double valor);
