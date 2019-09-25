@@ -6,7 +6,7 @@ typedef struct {
   TChave Chave;
 }TItem;
 
-typedef struct Celula *Apontador;
+typedef struct Celula* Apontador;
 typedef struct Celula{
     Apontador direita, abaixo;
     int linha, coluna;
@@ -18,8 +18,8 @@ typedef struct{
 }TLista;
 
 typedef struct{
-    TLista *linha, *coluna;
     int i, j;
+    TLista *linha, *coluna;    
 }TMatriz;
 
 //funcoes da matriz

@@ -1,16 +1,19 @@
 #include "TAD_Matriz_Esparsa.h"
 
-void InicializaMatriz(TMatriz *pMatriz, int i, int j){
-    // inicializamos a Matriz pPrimeiro  apontando para ela msm tornando-a cicilica
+void InicializaMatriz(TMatriz *pMatriz, int QuantidadeLinhas, int QuantidadeColunas){
+    int i, j;
     pMatriz->coluna->pPrimeiro = pMatriz->linha->pPrimeiro = (TCelula*)malloc(sizeof(TCelula));
-    pMatriz->coluna->pPrimeiro->linha = pMatriz->linha->pPrimeiro->coluna = -1;
-    pMatriz->coluna->pPrimeiro->direita = pMatriz->linha->pPrimeiro->abaixo = pMatriz->coluna->pPrimeiro;
+    pMatriz->coluna->pPrimeiro->linha = pMatriz->linha->pPrimeiro->coluna = -1;     //Inicializando celulas cabeça
+    for(i=0,i<QuantideLinhas;i++){
+        
+    }
+    pMatriz->coluna->pPrimeiro->direita = pMatriz->linha->pPrimeiro->abaixo = pMatriz->coluna->pPrimeiro;   //Tratanto a Lista Circular
     pMatriz->i = i;
     pMatriz->j = j;
     InicializaLinha(pMatriz->linha->pPrimeiro, i);
     InicializaColuna(pMatriz->coluna->pPrimeiro, j);
 }
-void InicializaLinha(TMatriz *pMatriz,int i){
+void InicializaLinha(TMatriz *pMatriz, int i){
     TCelula *pAUX;
     pAUX = (TCelula*)malloc(sizeof(TCelula));                       // aloca um espaco para nova celula
     pMatriz->linha->pPrimeiro->direita = pMatriz->linha->pPrimeiro;
@@ -19,7 +22,7 @@ void InicializaLinha(TMatriz *pMatriz,int i){
     pAUX->abaixo                       = pAUX;
 }
 
-void InicializaColuna(TMatriz *pMatriz,int j){
+void InicializaColuna(TMatriz *pMatriz, int j){
     TCelula *pAUX;
     pAUX = (TCelula*)malloc(sizeof(TCelula));                        // aloca um espaco para nova celula
     pMatriz->coluna->pPrimeiro->abaixo = pMatriz->coluna->pPrimeiro;
