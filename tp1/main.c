@@ -1,10 +1,20 @@
 #include "TAD_Matriz_Esparsa.h"
 #include <windows.h>
+#include "TAD_Matriz_Esparsa.h"
+#include <windows.h>
 int main(){
     TMatriz* Matriz;
     int escolha;
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+    printf("-----------------------------------------\n");
+    printf("-----------------MENU--------------------\n");
+    printf("1) Ler arquivo \n");
+    printf("2) Imprima a matriz \n");
+    printf("0) Sair \n");
+    printf("-----------------------------------------\n");
+    printf("-----------------------------------------\n");
+    scanf("%d",&escolha);
      while(escolha != 0){
         printf("-----------------------------------------\n");
         printf("-----------------MENU--------------------\n");
@@ -13,6 +23,7 @@ int main(){
         printf("0) Sair \n");
         printf("-----------------------------------------\n");
         printf("-----------------------------------------\n");
+        scanf("%d",&escolha);
         switch (escolha)
         {
         case 1 :
@@ -32,3 +43,4 @@ int main(){
     }
     return 0;
 }
+

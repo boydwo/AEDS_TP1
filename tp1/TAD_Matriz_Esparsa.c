@@ -2,7 +2,7 @@
 
 void InicializaMatriz(TMatriz *pMatriz, int QuantidadeLinhas, int QuantidadeColunas)
 {
-    pMatriz->coluna->pPrimeiro = pMatriz->linha->pPrimeiro = (TCelula *)malloc(sizeof(TCelula));          //malloc para primeira celula das duas listas, que chamaremos de Célula cabeça Mestra
+    pMatriz->coluna->pPrimeiro = pMatriz->linha->pPrimeiro = (TCelula*)malloc(sizeof(TCelula));          //malloc para primeira celula das duas listas, que chamaremos de Célula cabeça Mestra
     pMatriz->coluna->pPrimeiro->coluna = pMatriz->linha->pPrimeiro->linha = -1;                           //Inicializando celulas cabeça com -1 em seus campos linha e coluna do tipo int
     pMatriz->coluna->pPrimeiro->direita = pMatriz->linha->pPrimeiro->abaixo = pMatriz->coluna->pPrimeiro; //Tratanto a Lista Circular: Inicialmente um próprio item aponta para si mesma
     pMatriz->i = QuantidadeLinhas;
@@ -108,7 +108,7 @@ void inserirListaColuna(TCelula *pCelula, TCelula *pCelulaAinserir)
     pAux->abaixo = pCelulaAinserir;
 }
 
-void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor)
+void InsereMatriz(TMatriz *pMatriz, int i, int j, double valor)
 {
     TCelula *CeCabecaL, *CeCabecaC, *pAUX;
     CeCabecaC = PercorreColuna(pMatriz->coluna, j);
@@ -123,7 +123,7 @@ void leArquivo(TMatriz* pMatriz)
     FILE *arq;
     int tamLinha, tamColuna;
     int lin, col;
-    TItem val;
+    double val;
     arq = fopen("teste.txt", "r");
     //le a primeira linha com o tamanho da matriz
     fscanf(arq, "%d, %d\n", &tamLinha, &tamColuna);
@@ -142,18 +142,18 @@ void ImprimeMatriz (TMatriz *pMatriz){
     double matriz[pMatriz->i][pMatriz->j];
     int i, j;
 
-    Cabeca = pMatriz->linha->pPrimeiro->abaixo;   
+    Cabeca = pMatriz->linha->pPrimeiro->abaixo;
 
     for(i=0;i<pMatriz->linha->pPrimeiro->linha;i++){
         for(j=0;j<pMatriz->coluna->pPrimeiro->coluna;j++){
             matriz[i][j] = 0;
-        }        
+        }
     }
-    
+
     while (Cabeca->abaixo != pMatriz->linha->pPrimeiro){
         pAUX = Cabeca->direita;
         while(pAUX != Cabeca){
-            matriz[pAUX->linha][pAUX->coluna] = pAUX->Item.Chave;
+            matriz[pAUX->linha][pAUX->coluna] = pAUX->valor;
             pAUX = pAUX->direita;
         }
         Cabeca = Cabeca->abaixo;
@@ -163,7 +163,8 @@ void ImprimeMatriz (TMatriz *pMatriz){
         for(j=0;j<pMatriz->coluna->pPrimeiro->coluna;j++){
             printf("%lf ",matriz[i][j]);
         }
-        printf("\n");        
+        printf("\n");
     }
 
 }
+

@@ -1,16 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef double TChave;
-typedef struct{
-    TChave Chave;
-} TItem;
-
 typedef struct Celula *Apontador;
 typedef struct Celula{
     Apontador direita, abaixo;
     int linha, coluna;
-    TItem Item;
+    double valor;
 } TCelula;
 
 typedef struct{
@@ -32,8 +27,8 @@ TCelula *PercorreColuna(TLista *pLista, int PosColuna);
 
 void inserirListaLinha(TCelula *pCelula, TCelula *pCelulaAinserir);
 void inserirListaColuna(TCelula *pCelula, TCelula *pCelulaAinserir);
-void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor);
+void InsereMatriz(TMatriz *pMatriz, int i, int j, double valor);
 
 void leArquivo(TMatriz* pMatriz);
-
 void ImprimeMatriz (TMatriz *pMatriz);
+
