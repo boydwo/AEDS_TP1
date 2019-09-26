@@ -33,3 +33,5 @@ TCelula* PercorreColuna(TLista* pLista, int PosColuna);
 void inserirListaLinha(TCelula *pCelula, TCelula *pCelulaAinserir);
 void inserirListaColuna(TCelula *pCelula, TCelula *pCelulaAinserir);
 void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor);
+
+void ImprimeMatriz (TMatriz *pMatriz);

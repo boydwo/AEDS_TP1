@@ -105,3 +105,35 @@ void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor){
     inserirListaLinha(pMatriz->linha, CeCabecaL);
 
 }
+
+void ImprimeMatriz (TMatriz *pMatriz){
+    TCelula *pAUX, *Cabeca;
+
+    double matriz[pMatriz->i][pMatriz->j];
+    int i, j;
+
+    Cabeca = pMatriz->linha->pPrimeiro->abaixo;   
+
+    for(i=0;i<pMatriz->linha->pPrimeiro->linha;i++){
+        for(j=0;j<pMatriz->coluna->pPrimeiro->coluna;j++){
+            matriz[i][j] = 0;
+        }        
+    }
+    
+    while (Cabeca->abaixo != pMatriz->linha->pPrimeiro){
+        pAUX = Cabeca->direita;
+        while(pAUX != Cabeca){
+            matriz[pAUX->linha][pAUX->coluna] = pAUX->Item.Chave;
+            pAUX = pAUX->direita;
+        }
+        Cabeca = Cabeca->abaixo;
+    }
+
+    for(i=0;i<pMatriz->linha->pPrimeiro->linha;i++){
+        for(j=0;j<pMatriz->coluna->pPrimeiro->coluna;j++){
+            printf("%lf ",matriz[i][j]);
+        }
+        printf("\n");        
+    }
+
+}
