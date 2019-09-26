@@ -1,6 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-
+#include "TAD_Produto.h"
 typedef struct Celula *Apontador;
 typedef struct Celula{
     Apontador direita, abaixo;

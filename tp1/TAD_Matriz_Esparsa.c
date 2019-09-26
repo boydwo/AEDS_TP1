@@ -127,15 +127,22 @@ void leArquivo(TMatriz* pMatriz)
     int tamLinha, tamColuna;
     int lin, col;
     double val;
+    char infor[10000];
     arq = fopen("teste.txt", "r");
     //le a primeira linha com o tamanho da matriz
     fscanf(arq, "%d, %d\n", &tamLinha, &tamColuna);
     printf("tamlinha e tamcoluna: %d %d", tamLinha, tamColuna);
     InicializaMatriz(pMatriz,tamLinha+1,tamColuna+1);
+//    while(fgets(infor,10000,arq)!= EOF){
+//        for(i=0;i<(strlen(infor));i++){
+//                if(infor[i]!=' ' || infor[i]!=','){
+//                    infor[i]
+
     while (fscanf(arq, "%d, %d, %lf", &lin, &col, &val) != EOF)
     {
         InsereMatriz(pMatriz,lin, col, val);
     }
+    fclose(arq);
 }
 
 void ImprimeMatriz (TMatriz *pMatriz){
