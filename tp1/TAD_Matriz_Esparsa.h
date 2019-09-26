@@ -34,6 +34,6 @@ void inserirListaLinha(TCelula *pCelula, TCelula *pCelulaAinserir);
 void inserirListaColuna(TCelula *pCelula, TCelula *pCelulaAinserir);
 void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor);
 
-void leArquivo();
+void leArquivo(TMatriz* pMatriz);
 
 void ImprimeMatriz (TMatriz *pMatriz);

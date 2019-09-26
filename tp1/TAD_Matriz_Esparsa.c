@@ -118,20 +118,21 @@ void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor)
     inserirListaLinha(pMatriz->linha, CeCabecaL);
 }
 
-void leArquivo()
+void leArquivo(TMatriz* pMatriz)
 {
     FILE *arq;
     int tamLinha, tamColuna;
     int lin, col;
-    double val;
+    TItem val;
     arq = fopen("teste.txt", "r");
     //le a primeira linha com o tamanho da matriz
     fscanf(arq, "%d, %d\n", &tamLinha, &tamColuna);
     printf("tamlinha e tamcoluna: %d %d", tamLinha, tamColuna);
+    InicializaMatriz(&pMatriz,tamLinha,tamColuna);
 
     while (fscanf(arq, "%d, %d, %lf", &lin, &col, &val) != NULL)
     {
-        printf("linha: %d %d %lf", lin, col, val);
+        InsereMatriz(&pMatriz,lin, col, val);
     }
 }
 

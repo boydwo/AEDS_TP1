@@ -1,16 +1,11 @@
 #include "TAD_Matriz_Esparsa.h"
 
-int main()
-{
+int main(){
+    TMatriz* Matriz;
 
-InicializaMatriz();
+    leArquivo(&Matriz);
 
-InsereMatriz();
+    ImprimeMatriz (&Matriz);
 
-leArquivo();
-
-ImprimeMatriz ();
-
-
-return 0;
+    return 0;
 }
