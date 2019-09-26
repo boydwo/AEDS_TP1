@@ -1,26 +1,23 @@
-#include "TAD_Produto.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef double TChave;
-typedef struct
-{
+typedef struct{
     TChave Chave;
 } TItem;
 
 typedef struct Celula *Apontador;
-typedef struct Celula
-{
+typedef struct Celula{
     Apontador direita, abaixo;
     int linha, coluna;
     TItem Item;
 } TCelula;
 
-typedef struct
-{
+typedef struct{
     Apontador pPrimeiro;
 } TLista;
 
-typedef struct
-{
+typedef struct{
     int i, j;
     TLista *linha, *coluna;
 } TMatriz;
@@ -36,5 +33,7 @@ TCelula *PercorreColuna(TLista *pLista, int PosColuna);
 void inserirListaLinha(TCelula *pCelula, TCelula *pCelulaAinserir);
 void inserirListaColuna(TCelula *pCelula, TCelula *pCelulaAinserir);
 void InsereMatriz(TMatriz *pMatriz, int i, int j, TItem valor);
+
+void leArquivo();
 
 void ImprimeMatriz (TMatriz *pMatriz);

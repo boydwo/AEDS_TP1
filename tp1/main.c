@@ -4,15 +4,13 @@ int main()
 {
 
 InicializaMatriz();
-InicializaLinha();
-InicializaColuna();
 
-PercorreLinha();
-PercorreColuna();
-
-inserirListaLinha();
-inserirListaColuna();
 InsereMatriz();
 
-    return 0;
+leArquivo();
+
+ImprimeMatriz ();
+
+
+return 0;
 }
