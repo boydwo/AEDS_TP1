@@ -1,14 +1,14 @@
 #include "TAD_Matriz_Esparsa.h"
 
-void InicializaMatriz(TMatriz *pMatriz, int QuantidadeLinhas, int QuantidadeColunas)
-{
-    pMatriz->coluna->pPrimeiro = pMatriz->linha->pPrimeiro = (TCelula*)malloc(sizeof(TCelula));          //malloc para primeira celula das duas listas, que chamaremos de Célula cabeça Mestra
-    pMatriz->coluna->pPrimeiro->coluna = pMatriz->linha->pPrimeiro->linha = -1;                           //Inicializando celulas cabeça com -1 em seus campos linha e coluna do tipo int
-    pMatriz->coluna->pPrimeiro->direita = pMatriz->linha->pPrimeiro->abaixo = pMatriz->coluna->pPrimeiro; //Tratanto a Lista Circular: Inicialmente um próprio item aponta para si mesma
+void InicializaMatriz(TMatriz *pMatriz, int QuantidadeLinhas, int QuantidadeColunas){
+    pMatriz->coluna.pPrimeiro = (Apontador) malloc(sizeof(TCelula));
+    pMatriz->linha.pPrimeiro = pMatriz->coluna.pPrimeiro;
+    pMatriz->coluna.pPrimeiro->coluna = pMatriz->linha.pPrimeiro->linha = -1;                     //Inicializando celulas cabeça com -1 em seus campos linha e coluna do tipo int
+    pMatriz->coluna.pPrimeiro->direita = pMatriz->linha.pPrimeiro->abaixo = pMatriz->coluna.pPrimeiro;   //Tratanto a Lista Circular: Inicialmente um próprio item aponta para si mesma
     pMatriz->i = QuantidadeLinhas;
     pMatriz->j = QuantidadeColunas;
-    InicializaLinha(pMatriz->linha, QuantidadeLinhas);    //Agora e hora de inicializar 'QuantidadeLinhas'(valor) linhas
-    InicializaColuna(pMatriz->coluna, QuantidadeColunas); //E também inicializar 'QuantidadeColunas'(valor) colunas
+    InicializaLinha(&pMatriz->linha, QuantidadeLinhas);      //Agora e hora de inicializar 'QuantidadeLinhas'(valor) linhas
+    InicializaColuna(&pMatriz->coluna, QuantidadeColunas);   //E também inicializar 'QuantidadeColunas'(valor) colunas
 }
 
 void InicializaLinha(TLista *pLista, int QuantidadeLinhas)
@@ -111,11 +111,14 @@ void inserirListaColuna(TCelula *pCelula, TCelula *pCelulaAinserir)
 void InsereMatriz(TMatriz *pMatriz, int i, int j, double valor)
 {
     TCelula *CeCabecaL, *CeCabecaC, *pAUX;
-    CeCabecaC = PercorreColuna(pMatriz->coluna, j);
-    CeCabecaL = PercorreLinha(pMatriz->linha, i);
+    CeCabecaC = PercorreColuna(&pMatriz->coluna, j);
+    CeCabecaL = PercorreLinha(&pMatriz->linha, i);
     pAUX = (TCelula *)malloc(sizeof(TCelula));
-    inserirListaColuna(pMatriz->coluna, CeCabecaC);
-    inserirListaLinha(pMatriz->linha, CeCabecaL);
+    pAUX->linha = i;
+    pAUX->coluna = j;
+    pAUX->valor = valor;
+    inserirListaColuna(CeCabecaC, pAUX);
+    inserirListaLinha(CeCabecaL, pAUX);
 }
 
 void leArquivo(TMatriz* pMatriz)
@@ -128,11 +131,10 @@ void leArquivo(TMatriz* pMatriz)
     //le a primeira linha com o tamanho da matriz
     fscanf(arq, "%d, %d\n", &tamLinha, &tamColuna);
     printf("tamlinha e tamcoluna: %d %d", tamLinha, tamColuna);
-    InicializaMatriz(&pMatriz,tamLinha,tamColuna);
-
-    while (fscanf(arq, "%d, %d, %lf", &lin, &col, &val) != NULL)
+    InicializaMatriz(pMatriz,tamLinha+1,tamColuna+1);
+    while (fscanf(arq, "%d, %d, %lf", &lin, &col, &val) != EOF)
     {
-        InsereMatriz(&pMatriz,lin, col, val);
+        InsereMatriz(pMatriz,lin, col, val);
     }
 }
 
@@ -142,26 +144,27 @@ void ImprimeMatriz (TMatriz *pMatriz){
     double matriz[pMatriz->i][pMatriz->j];
     int i, j;
 
-    Cabeca = pMatriz->linha->pPrimeiro->abaixo;
+    Cabeca = pMatriz->linha.pPrimeiro->abaixo;
 
-    for(i=0;i<pMatriz->linha->pPrimeiro->linha;i++){
-        for(j=0;j<pMatriz->coluna->pPrimeiro->coluna;j++){
+    for(i=1;i<(pMatriz->i);i++){
+        for(j=1;j<(pMatriz->j);j++){
             matriz[i][j] = 0;
         }
     }
 
-    while (Cabeca->abaixo != pMatriz->linha->pPrimeiro){
+    while (Cabeca->abaixo != pMatriz->linha.pPrimeiro){
+
         pAUX = Cabeca->direita;
         while(pAUX != Cabeca){
+
             matriz[pAUX->linha][pAUX->coluna] = pAUX->valor;
             pAUX = pAUX->direita;
         }
         Cabeca = Cabeca->abaixo;
     }
-
-    for(i=0;i<pMatriz->linha->pPrimeiro->linha;i++){
-        for(j=0;j<pMatriz->coluna->pPrimeiro->coluna;j++){
-            printf("%lf ",matriz[i][j]);
+    for(i=1;i<(pMatriz->i);i++){
+        for(j=1;j<(pMatriz->j);j++){
+            printf("%.0lf ",matriz[i][j]);
         }
         printf("\n");
     }

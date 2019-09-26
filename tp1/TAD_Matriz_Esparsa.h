@@ -14,7 +14,7 @@ typedef struct{
 
 typedef struct{
     int i, j;
-    TLista *linha, *coluna;
+    TLista linha, coluna;
 } TMatriz;
 
 //funcoes da matriz

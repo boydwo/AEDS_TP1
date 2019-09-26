@@ -1,17 +1,12 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include "TAD_Matriz_Esparsa.h"
 
-typedef int TipoChave;
-typedef struct
-{
-  TipoChave Chave;
+typedef struct{
   char Data[11];
   int qntd;
-} TItem;
+} TipoItem;
 
 typedef struct Celula *Apontador;
-typedef struct Celula
-{
+typedef struct Celula{
   TItem Item;
   Apontador pProx;
 } TCelula;
