@@ -1,31 +1,24 @@
-#ifndef TAD_PRODUTO_H_INCLUDED
-#define TAD_PRODUTO_H_INCLUDED
-#include <stdlib.h>
-#include <stdio.h>
+#include "TAD_Matriz_Esparsa.h"
+
 typedef struct{
   char Data[11];
   int qntd;
-  int QntdTotalCompraPorProd;
-  int QntdTotalCompraPorpessoa;
-} TItem;
+} TipoItem;
 
-typedef struct CItem *AptItem;
-typedef struct CItem{
+typedef struct Celula *Apontador;
+typedef struct Celula{
   TItem Item;
-  AptItem pProx;
-} TCItem;
+  Apontador pProx;
+} TCelula;
 
 typedef struct
 {
-  AptItem pPri;
-  AptItem pUlt;
-} TListaItem;
+  Apontador pPrimeiro;
+  Apontador pUltimo;
+} TLista;
 
-void FLVazia(TListaItem *pListaItem);
-int LEhVazia(TListaItem *pListaItem);
-void LInsere(TListaItem *pListaItem, TItem *pItem);
-int LRetira(TListaItem *pListaItem, TItem *pItem);
-void LImprime(TListaItem *pListaItem);
-
-
-#endif // TAD_PRODUTO_H_INCLUDED
+void FLVazia(TLista *pLista);
+int LEhVazia(TLista *pLista);
+int LInsere(TLista *pLista, TItem *pItem);
+int LRetira(TLista *pLista, TItem *pItem);
+void LImprime(TLista *pLista);
